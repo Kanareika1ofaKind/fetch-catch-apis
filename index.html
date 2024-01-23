@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Using Fetch</title>
+</head>
+<body>
+  <h1>Using Fetch</h1>
+  <section>
+    <h2>Here are the users:</h2>
+  </section>
+
+  <script>
+    const baseURL = 'https://testing-apis-postman.herokuapp.com'
+    // 
+    //  [GET] /api/users
+    // 
+    fetch(baseURL + '/api/users')
+      .then(res => {
+        return res.json()
+      })
+      .then(data => {
+        console.log(data)
+        const section = document.querySelector('section')
+        data.forEach(user => {
+          section.append(user.name)
+        })
+      })
+      .catch(error => {
+        console.log(error.message);
+      })
+  </script>
+</body>
+</html>
